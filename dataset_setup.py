@@ -7,7 +7,6 @@ client_sec = "062661d5c3c6436997241777903492c1"
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_sec)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-start = timeit.default_timer()
 
 
 result = sp.track(track_id="0sSl9LFCzQAunHx9T1Un3O")
