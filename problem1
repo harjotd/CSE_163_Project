@@ -1,0 +1,14 @@
+def problem1(data):
+    """plot danceability(from dataset) and popularity(spotify api)"""
+    data1 = data.groupby('album')['danceability'].mean()
+    newdata = pd.DataFrame({'album': data1.index, 'album_danceability': data1.values})
+    # i is the dataset used for this function
+    i = data.merge(newdata, left_on='album', right_on="album", how='right')
+    # i is now a table of album danceability values and popularity, with each
+    # row representing a unique album
+    i = i[['album_danceability', 'popularity']].drop_duplicates()
+    sns.regplot(data=i, x='album_danceability', y='popularity')
+    mplot.show()
+    correlation = np.corrcoef(i['album_danceability'], i['popularity'])
+    # [0][1] is a good value
+    print(correlation[0][1])
